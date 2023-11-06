@@ -1,22 +1,26 @@
 import "./App.css";
+import Weather from "./Weather";
 
 export default function App() {
   return (
     <div className="App">
-      <h1>My weather app</h1>
-      <footer>
-        <p>
-          This project was coded by Eliska Necas and is
-          <a
-            href="https://github.com/EliTimeless/new-react-weather-app.git"
-            target="_blank"
-            rel="noreferrer"
-          >
-            {" "}
-            open-source
-          </a>
-        </p>
-      </footer>
+      <div className="container">
+        <Weather />
+
+        <footer className="m-2">
+          <p>
+            This project was coded by Eliska Necas and is
+            <a
+              href="https://github.com/EliTimeless/new-react-weather-app.git"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {" "}
+              open-source
+            </a>
+          </p>
+        </footer>
+      </div>
     </div>
   );
 }
