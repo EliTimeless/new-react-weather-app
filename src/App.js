@@ -13,7 +13,7 @@ export default function App() {
             rel="noreferrer"
           >
             {" "}
-            open-source code
+            open-source
           </a>
         </p>
       </footer>
