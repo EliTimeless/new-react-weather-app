@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Weather.css";
 import "./App.css";
-import FormattedDate from "./FormattedDate";
+import WeatherInfo from "./WeatherInfo";
 
-export default function Weather() {
+export default function Weather(props) {
+  const [city, setCity] = useState(props.defaultCity);
   const [temperature, setTemperature] = useState(null); //null protoze zatim nevime hodnotu
   const [weatherData, setWeatherData] = useState({ ready: false });
 
@@ -24,10 +25,29 @@ export default function Weather() {
     });
   }
 
+  function Search() {
+    //api call city
+    const apiKey = "ffbbbb548b237aed83af9997c794ee44";
+
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    Search();
+  }
+
+  function handleCityChange(event) {
+    setCity(event.target.value);
+  }
+
   if (weatherData.ready) {
+    //is the weatherData ready? by default neni ready, takže to bude ignorováno a pustí se nejdřív else. Tam se udělá api call,
+    // ten nás zpět hodí k funkci s response, kde se ready stane true a vše z if je pak zobrazeno.
     return (
       <div className="Weather">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-9">
               <input
@@ -35,6 +55,7 @@ export default function Weather() {
                 placeholder="Enter a city"
                 className="form-control"
                 autoFocus="on"
+                onChange={handleCityChange} //whenever this changes
               />
             </div>
             <div className="col-3">
@@ -42,40 +63,11 @@ export default function Weather() {
             </div>
           </div>
         </form>
-        <h1>{weatherData.city}</h1>
-        <ul>
-          <li>
-            <FormattedDate date={weatherData.date} />
-          </li>
-          <li className="text-capitalize">{weatherData.description}</li>
-        </ul>
-        <div className="row mt-3">
-          <div className="col-6">
-            <div className="clearfix">
-              <img
-                href={weatherData.iconUrl}
-                alt={weatherData.description}
-                className="float-left"
-              />
-              <span className="temperature">{Math.round(temperature)}</span>
-              <span className="unit">°C | °F</span>
-            </div>
-          </div>
-          <div className="col-6">
-            <ul>
-              <li>Humidity: {weatherData.humidity}: 72%</li>
-              <li>Wind: {weatherData.wind} km/h</li>
-            </ul>
-          </div>
-        </div>
+        <WeatherInfo data={weatherData} />
       </div>
     );
   } else {
-    const apiKey = "ffbbbb548b237aed83af9997c794ee44";
-    let city = "Prague";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(handleResponse);
-
+    Search(); //vyvoláme funkci, která zobrazí defaultní město
     return "Loading";
   }
 }
