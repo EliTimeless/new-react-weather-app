@@ -55,10 +55,7 @@ export default function Weather() {
                 className="float-left"
               />
               <span className="temperature">{Math.round(temperature)}</span>
-              <span className="unit">
-                {" "}
-                <a href="">°C</a> | <a href="">°F</a>
-              </span>
+              <span className="unit">°C | °F</span>
             </div>
           </div>
           <div className="col-6">
