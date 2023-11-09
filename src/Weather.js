@@ -18,7 +18,7 @@ export default function Weather(props) {
       wind: Math.round(response.data.wind.speed),
       city: response.data.name,
       humidity: response.data.main.humidity,
-      iconUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+      icon: response.data.weather[0].icon,
       description: response.data.weather[0].description,
     });
   }
@@ -50,14 +50,18 @@ export default function Weather(props) {
             <div className="col-9">
               <input
                 type="search"
-                placeholder="Enter a city"
+                placeholder="Enter a city.."
                 className="form-control"
                 autoFocus="on"
-                onChange={handleCityChange} //whenever this changes
+                onChange={handleCityChange}
               />
             </div>
             <div className="col-3">
-              <input type="submit" value="Search" className="btn w-100" />
+              <input
+                type="submit"
+                value="Search"
+                className="btn btn-primary w-100"
+              />
             </div>
           </div>
         </form>
