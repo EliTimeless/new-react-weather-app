@@ -6,12 +6,10 @@ import WeatherInfo from "./WeatherInfo";
 
 export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
-  const [temperature, setTemperature] = useState(null); //null protoze zatim nevime hodnotu
   const [weatherData, setWeatherData] = useState({ ready: false });
 
   function handleResponse(response) {
     console.log(response.data);
-    setTemperature(response.data.main.temp);
 
     setWeatherData({
       ready: true,
@@ -20,7 +18,7 @@ export default function Weather(props) {
       wind: Math.round(response.data.wind.speed),
       city: response.data.name,
       humidity: response.data.main.humidity,
-      iconUrl: "https://openweathermap.org/img/wn/10d@2x.png",
+      iconUrl: "http://openweathermap.org/img/wn/10d@2x.png",
       description: response.data.weather[0].description,
     });
   }
