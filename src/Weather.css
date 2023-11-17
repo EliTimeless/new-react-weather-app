@@ -1,9 +1,9 @@
 .Weather {
   color: #878787;
-  font-family: aria, sans-serif;
-  border: 1px solid rgb(151, 119, 119);
+  font-family: "Inter Tight", sans-serif;
+  border: 1px solid rgb(211, 167, 167);
   padding: 16px;
-  border-radius: 4px;
+  border-radius: 8px;
   background: linear-gradient(
     0deg,
     rgb(255, 231, 247) 0%,
@@ -64,6 +64,7 @@
   );
   border: solid 1px red;
   color: white;
+  transition: 0.2s;
 }
 
 .Weather .btn:hover {
@@ -71,8 +72,8 @@
   color: black;
   background: linear-gradient(
     0deg,
-    rgb(247, 170, 223) 0%,
-    rgb(255, 189, 148) 100%
+    rgb(251, 147, 218) 0%,
+    rgb(251, 182, 140) 100%
   );
   border: solid 1px red;
 }

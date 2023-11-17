@@ -3,16 +3,16 @@ import axios from "axios";
 import "./Weather.css";
 import "./App.css";
 import WeatherInfo from "./WeatherInfo";
+import WeatherForecast from "./WeatherForecast";
 
 export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
   const [weatherData, setWeatherData] = useState({ ready: false });
 
   function handleResponse(response) {
-    console.log(response.data);
-
     setWeatherData({
       ready: true,
+      coord: response.data.coord,
       date: new Date(response.data.dt * 1000),
       temperature: response.data.main.temp,
       wind: Math.round(response.data.wind.speed),
@@ -24,7 +24,6 @@ export default function Weather(props) {
   }
 
   function Search() {
-    //api call city
     const apiKey = "ffbbbb548b237aed83af9997c794ee44";
 
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -41,8 +40,6 @@ export default function Weather(props) {
   }
 
   if (weatherData.ready) {
-    //is the weatherData ready? by default neni ready, takže to bude ignorováno a pustí se nejdřív else. Tam se udělá api call,
-    // ten nás zpět hodí k funkci s response, kde se ready stane true a vše z if je pak zobrazeno.
     return (
       <div className="Weather">
         <form onSubmit={handleSubmit}>
@@ -66,10 +63,11 @@ export default function Weather(props) {
           </div>
         </form>
         <WeatherInfo data={weatherData} />
+        <WeatherForecast coords={weatherData.coord} />
       </div>
     );
   } else {
-    Search(); //vyvoláme funkci, která zobrazí defaultní město
+    Search();
     return "Loading";
   }
 }
