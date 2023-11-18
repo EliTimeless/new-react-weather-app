@@ -1,9 +1,14 @@
 .App {
   max-width: 600px;
   margin: 30px auto;
+  backdrop-filter: blur(0.5px);
 }
 
 .App footer {
   font-size: 15px;
   margin: 10px 0;
+  color: aliceblue;
+}
+.App footer a {
+  color: #6a6ae2;
 }
