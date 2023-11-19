@@ -10,7 +10,7 @@ export default function App() {
           <p>
             This project was coded by{" "}
             <a
-              href="https://www.linkedin.com/in/eliška-nečasová-front-end-tester"
+              href="https://linkedin.com/in/eliška-nečasová-front-end-tester"
               target="_blank"
               rel="noreferrer"
               title="linkedIn profile"
