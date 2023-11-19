@@ -13,6 +13,7 @@ export default function App() {
               href="https://www.linkedin.com/in/eli%C5%A1ka-ne%C4%8Dasov%C3%A1-front-end-tester/"
               target="_blank"
               rel="noreferrer"
+              title="linkedIn profile"
             >
               {" "}
               Eliska Necas
@@ -22,6 +23,7 @@ export default function App() {
               href="https://github.com/EliTimeless/new-react-weather-app.git"
               target="_blank"
               rel="noreferrer"
+              title="Github profile"
             >
               open-source
             </a>
